@@ -1,0 +1,5 @@
+<resources>
+  <string name="app_name">LockScreenDemo</string>
+
+  <string name="lock_screen">lock_screen</string>
+</resources>
