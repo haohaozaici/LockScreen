@@ -6,12 +6,15 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.os.Build.VERSION_CODES;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import org.greenrobot.eventbus.EventBus;
 
 /**
  * Created by haohao on 2017/11/29.
@@ -23,10 +26,10 @@ public class UnderView extends View {
   private View mMoveView;
   private float mWidth;
 
-  public UnderView(@NonNull Context context) {
+  public UnderView(@NonNull Context context, View moveView) {
     super(context);
     mWidth = getWidth();
-    mMoveView = getRootView();
+    mMoveView = moveView;
   }
 
   public UnderView(@NonNull Context context,
@@ -104,10 +107,13 @@ public class UnderView extends View {
       animator.addListener(new AnimatorListenerAdapter() {
         @Override
         public void onAnimationEnd(Animator animation) {
-//          mainHandler.obtainMessage(LockScreenActivity.MSG_LAUNCH_HOME).sendToTarget();
+
+//          new Handler().obtainMessage(LockScreenActivity.MSG_LAUNCH_HOME).sendToTarget();
+          EventBus.getDefault().post(new UnLockScreen());
           super.onAnimationEnd(animation);
         }
       });
     }//监听动画结束，利用Handler通知Activity退出
   }
+
 }

@@ -4,6 +4,7 @@
 
   <!--自定义锁屏-->
   <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+  <uses-permission android:name="android.permission.VIBRATE"/>
 
 
   <application
@@ -23,6 +24,7 @@
     <activity
       android:name=".lockscreen.LockScreenActivity"
       android:taskAffinity="@string/lock_screen" />
+    <activity android:name=".lockscreen.swipeback.app.SwipeBackActivity" />
 
     <service android:name=".lockscreen.LockScreenService" />
   </application>
